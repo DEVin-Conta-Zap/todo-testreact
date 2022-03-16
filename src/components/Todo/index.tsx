@@ -20,20 +20,23 @@ const Todo = () => {
 
   return (
     <>
-      <form onSubmit={handleOnSubmit}>
+      <form onSubmit={handleOnSubmit} aria-label="Formulário Todo">
         <input
           type="text"
           value={todoItem}
+          data-testid="input-add-todo"
           onChange={e => setTodoItem(e.target.value)}
         />
         <button type='submit'>Salvar</button>
       </form>
 
-      <ul>
+      <ul data-testid="ul-todos">
         {todoList.map(todoItem => (
-          <li key={todoItem}>
+          <li key={todoItem} data-testid={todoItem}>
             {todoItem} {" "}
-            <button type='button' onClick={() => handleDelete(todoItem)}>Remover</button>
+            <button type='button' 
+              data-testid={`${todoItem}-btn-delete`} 
+              onClick={() => handleDelete(todoItem)}>Remover</button>
           </li>
         ))}
       </ul>
